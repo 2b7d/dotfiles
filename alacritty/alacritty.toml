@@ -1,0 +1,15 @@
+import = [
+    "~/.config/alacritty/theme-dark.toml"
+]
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 12.0
+normal = {family = "CodeNewRoman", style = "Regular"}
+
+[keyboard]
+bindings = [
+    {key = "Return", mods = "Control|Shift", action = "SpawnNewInstance"}
+]
