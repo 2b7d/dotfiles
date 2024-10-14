@@ -60,9 +60,9 @@ luasnip.config.set_config({
 
 vim.keymap.set("n", "<leader>ss", luasnip.unlink_current)
 
-vim.keymap.set("i", "<Tab>", function()
+vim.keymap.set("i", "<tab>", function()
     if luasnip.expand_or_jumpable() then
-        return "<Plug>luasnip-expand-or-jump"
+        return "<plug>luasnip-expand-or-jump"
     end
     return "<tab>"
 end, {remap = true, expr = true})
