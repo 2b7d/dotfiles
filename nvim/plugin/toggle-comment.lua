@@ -43,12 +43,12 @@ vim.keymap.set({"n", "v"}, "<leader>/", function()
         return "<esc>"
     end
 
-    local line_start = vim.fn.line('v')
-    local line_end = vim.fn.line('.')
+    local range_start = vim.fn.line('v')
+    local range_end = vim.fn.line('.')
 
-    if line_start > line_end then
-        line_start, line_end = line_end, line_start
+    if range_start > range_end then
+        range_start, range_end = range_end, range_start
     end
 
-    return string.format("<cmd>%d,%d!~/.local/lib/vim-filter-toggle-comment %s %s<cr><esc>", line_start, line_end, comment.prefix, comment.suffix)
+    return string.format("<cmd>%d,%d!~/.local/lib/vim-filter-toggle-comment %s %s<cr><esc>", range_start, range_end, comment.prefix, comment.suffix)
 end, {expr = true})
