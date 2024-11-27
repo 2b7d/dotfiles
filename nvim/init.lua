@@ -19,7 +19,7 @@ vim.opt.listchars = {trail = "·", tab = "  "}
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.cmd.colorscheme("art-dark")
+vim.cmd.colorscheme("art")
 
 -- Telescope
 require("telescope").setup({
