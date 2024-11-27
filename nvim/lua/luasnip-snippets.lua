@@ -47,7 +47,7 @@ for _, lang in ipairs({"html", "vue", "php", "ejs", "blade"}) do
         snippet("html", {
             text({
                 "<!DOCTYPE html>",
-                "<html lang=\"en\">",
+                "<html>",
                 "<head>",
                 "\t<meta charset=\"utf-8\">",
                 "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
