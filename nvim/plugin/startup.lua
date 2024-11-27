@@ -12,3 +12,14 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.cmd.highlight({"def", "link", "global_shebang", "Comment"})
     end
 })
+
+local hi_state = false
+
+vim.keymap.set("n", "<leader>hs", function()
+    local val = "red"
+    if hi_state then
+        val = "fg"
+    end
+    vim.cmd("hi String guifg=" .. val)
+    hi_state = not hi_state
+end)
