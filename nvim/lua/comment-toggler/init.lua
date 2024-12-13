@@ -1,7 +1,4 @@
-if vim.g.loaded_toggle_comment == 1 then
-    return
-end
-vim.g.loaded_toggle_comment = 1
+local M = {}
 
 local function create_comment(prefix, suffix)
     return {prefix = prefix, suffix = suffix or ""}
@@ -32,13 +29,13 @@ local filetype_comment = {
     yasm       = create_comment([[\;]])
 }
 
-vim.keymap.set({"n", "v"}, "<leader>/", function()
+function M.toggle()
     local ft = vim.bo.filetype
     local comment = filetype_comment[ft]
 
     if comment == nil then
         vim.schedule(function()
-            vim.api.nvim_err_writeln(string.format("plugin/toggle-comment: filetype '%s' is not supported", ft))
+            vim.api.nvim_err_writeln(string.format("comment-toggler: filetype '%s' is not supported", ft))
         end)
         return "<esc>"
     end
@@ -51,4 +48,6 @@ vim.keymap.set({"n", "v"}, "<leader>/", function()
     end
 
     return string.format("<cmd>%d,%d!~/.local/lib/vim-filter-toggle-comment %s %s<cr><esc>", range_start, range_end, comment.prefix, comment.suffix)
-end, {expr = true})
+end
+
+return M

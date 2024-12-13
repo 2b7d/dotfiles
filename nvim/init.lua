@@ -21,6 +21,12 @@ vim.opt.splitright = true
 
 vim.cmd.colorscheme("art")
 
+-- Highlighter
+vim.keymap.set("n", "<leader>hs", require("highlighter").strings)
+
+-- Comment Toggler
+vim.keymap.set({"n", "v"}, "<leader>/", require("comment-toggler").toggle, {expr = true})
+
 -- Telescope
 require("telescope").setup({
     defaults = {
@@ -51,7 +57,6 @@ vim.keymap.set("n", "<leader>fs", telescope_builtin.grep_string)
 
 -- LuaSnip
 local luasnip = require("luasnip")
-require("luasnip-snippets")
 
 luasnip.config.set_config({
     history = false,
@@ -66,3 +71,59 @@ vim.keymap.set("i", "<tab>", function()
     end
     return "<tab>"
 end, {remap = true, expr = true})
+
+luasnip.add_snippets("all", {
+	luasnip.snippet("note", {luasnip.text_node("NOTE(art), " .. os.date("!%d.%m.%y") .. ": ")}),
+	luasnip.snippet("todo", {luasnip.text_node("TODO(art), " .. os.date("!%d.%m.%y") .. ": ")}),
+})
+
+luasnip.add_snippets("vue", {
+    luasnip.snippet("vue", {
+        luasnip.text_node({
+            "<script setup>",
+            'import * as Vue from "vue";',
+            "</script>",
+            "",
+            "<template>",
+            "</template>",
+            "",
+            "<style scoped>",
+            "</style>",
+        }),
+    })
+})
+
+luasnip.add_snippets("php", {
+    luasnip.snippet("php", {
+        luasnip.text_node({
+            "<?php",
+            "declare(strict_types = 1);",
+            "",
+            "?>"
+        }),
+    })
+})
+
+for _, lang in pairs({"html", "vue", "php"}) do
+    luasnip.add_snippets(lang, {
+        luasnip.snippet("tag", {
+            luasnip.text_node("<"), luasnip.insert_node(1), luasnip.text_node(">"),
+            luasnip.insert_node(0),
+            luasnip.text_node("</"), require("luasnip.extras").rep(1), luasnip.text_node(">")
+        }),
+        luasnip.snippet("html", {
+            luasnip.text_node({
+                "<!DOCTYPE html>",
+                "<html>",
+                "<head>",
+                    '\t<meta charset="utf-8">',
+                    '\t<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+                    "\t<title>Title</title>",
+                "</head>",
+                "<body>",
+                "</body>",
+                "</html>"
+            })
+        })
+    })
+end

@@ -1,7 +1,7 @@
-if vim.g.loaded_ts_search == 1 then
+if vim.g.loaded_ts_search then
     return
 end
-vim.g.loaded_ts_search = 1
+vim.g.loaded_ts_search = true
 
 vim.api.nvim_create_user_command("TSSearch", function(params)
     vim.cmd("split")
