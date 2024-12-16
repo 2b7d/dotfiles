@@ -4,11 +4,11 @@ endif
 
 syn sync fromstart
 
-syn match asm_comment ";.*"
+syn match yasm_comment ";.*"
 
-syn region asm_string start=+\z(['"]\)+ end=+\z1+ skip=+\\\\\|\\\z1+
+syn region yasm_string start=+\z(['"]\)+ end=+\z1+ skip=+\\\\\|\\\z1+
 
-hi def link asm_comment Comment
-hi def link asm_string String
+hi def link yasm_comment Comment
+hi def link yasm_string String
 
 let b:current_syntax = "yasm"

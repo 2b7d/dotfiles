@@ -2,6 +2,8 @@ if exists("b:current_syntax")
     finish
 endif
 
+syn sync fromstart
+
 syn match js_comment "\/\/.*"
 syn region js_comment start="/\*" end="\*/"
 
