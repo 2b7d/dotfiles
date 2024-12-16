@@ -4,7 +4,7 @@ if vim.fn.exists("syntax_on") then
     vim.cmd("syntax reset")
 end
 
-vim.g.colors_name = "art-dark"
+vim.g.colors_name = "art"
 vim.g.loaded_matchparen = 1
 
 vim.opt.background = "dark"

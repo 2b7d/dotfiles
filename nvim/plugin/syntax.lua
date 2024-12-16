@@ -7,8 +7,9 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function()
         vim.treesitter.stop()
-
-        vim.cmd.syntax({"match", "global_shebang", "/#!.*/"})
-        vim.cmd.highlight({"def", "link", "global_shebang", "Comment"})
+        vim.cmd([[
+            syn match global_shebang "#!.*"
+            hi def link global_shebang Comment
+        ]])
     end
 })
