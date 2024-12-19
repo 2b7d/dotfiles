@@ -178,7 +178,7 @@ end
 --  unnest = '<'+ seq
 --  cmd = seq (nest | unnest)+?
 
-function M.run()
+function M.compile()
     local line = vim.api.nvim_get_current_line()
     local cmd_start, cmd_end = string.find(line, CMD_IDENT, 1, true)
 
@@ -197,7 +197,7 @@ function M.run()
 
     local ok, err = pcall(parse_cmd, parser)
     if not ok then
-        vim.api.nvim_err_writeln(string.format("plugin/html-tags: %s", err))
+        vim.api.nvim_err_writeln(string.format("html-tags: %s", err))
         return false
     end
 
