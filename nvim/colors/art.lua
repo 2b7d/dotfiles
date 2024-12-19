@@ -9,28 +9,29 @@ vim.g.loaded_matchparen = 1
 
 vim.opt.background = "dark"
 
-local black   = "#2f2e2d"  -- 0
-local red     = "#a36666"  -- 1
-local green   = "#90a57d"  -- 2
-local yellow  = "#d7af87"  -- 3
-local blue    = "#7fa5bd"  -- 4
-local magenta = "#c79ec4"  -- 5
-local cyan    = "#8adbb4"  -- 6
-local white   = "#d0d0d0"  -- 7
+local black   = "#333333"  -- 0
+local red     = "#9f6060"  -- 1
+local green   = "#8ba375"  -- 2
+local yellow  = "#d9b38c"  -- 3
+local blue    = "#7a9eb8"  -- 4
+local magenta = "#c69fc3"  -- 5
+local cyan    = "#88ddb3"  -- 6
+local white   = "#cccccc"  -- 7
 
-local lblack   = "#4a4845" -- 8
-local lred     = "#d78787" -- 9
-local lgreen   = "#afbea2" -- 10
-local lyellow  = "#d7d787" -- 11
-local lblue    = "#a1bdce" -- 12
-local lmagenta = "#d7beda" -- 13
-local lcyan    = "#b1e7dd" -- 14
-local lwhite   = "#efefef" -- 15
+local lblack   = "#504e49" -- 8
+local lred     = "#d98c8c" -- 9
+local lgreen   = "#b3c2a3" -- 10
+local lyellow  = "#d9d98c" -- 11
+local lblue    = "#9cbac9" -- 12
+local lmagenta = "#d7bfd9" -- 13
+local lcyan    = "#b0e8df" -- 14
+local lwhite   = "#f2f2f2" -- 15
 
-local background = "#1c1c1c"
+local background = "#1a1a1a"
 local foreground = white
 
 -- TODO(art), 07.10.24: term support?
+-- TODO(art), 19.12.24: try to use builtin nvim function
 local hi = function(group, gui)
     local gui_fg, gui_bg, gui_mod = unpack(gui)
     gui_mod = gui_mod or "NONE"
