@@ -7,3 +7,4 @@ alias bat-stat="cat /sys/class/power_supply/BAT0/capacity && cat /sys/class/powe
 alias cal="cal -m"
 alias rg="rg --no-heading --hidden"
 alias fd="fd -u"
+alias ffplay="ffplay -seek_interval 1"
