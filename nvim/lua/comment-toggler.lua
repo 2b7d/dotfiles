@@ -21,6 +21,7 @@ local filetype_comment = {
     sh         = hash,
     python     = hash,
     yaml       = hash,
+    toml       = hash,
     asm        = hash,
     html       = create_comment([[\<\!--]], [[--\>]]),
     css        = create_comment([[/\*]], [[\*/]]),
