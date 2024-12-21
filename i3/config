@@ -14,7 +14,7 @@ set $ws10 "10"
 set $refresh_i3status killall -SIGUSR1 i3status
 
 set $terminal alacritty -T alacritty
-set $browser brave
+set $browser firefox
 
 bindsym $mod+Return exec --no-startup-id $terminal
 bindsym $mod+b exec --no-startup-id $browser
