@@ -16,6 +16,7 @@ vim.opt.listchars = {trail = "·", tab = "  "}
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+vim.cmd.filetype("indent off")
 vim.cmd.colorscheme("art")
 
 -- Highlighter
