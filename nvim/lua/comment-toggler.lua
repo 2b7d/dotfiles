@@ -23,6 +23,7 @@ local filetype_comment = {
     yaml       = hash,
     toml       = hash,
     asm        = hash,
+    cfg        = hash,
     html       = create_comment([[\<\!--]], [[--\>]]),
     css        = create_comment([[/\*]], [[\*/]]),
     lua        = create_comment("--"),
