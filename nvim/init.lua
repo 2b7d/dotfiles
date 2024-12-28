@@ -64,8 +64,10 @@ luasnip.config.set_config({
 vim.keymap.set("n", "<leader>ss", luasnip.unlink_current)
 
 vim.keymap.set("i", "<tab>", function()
-    if luasnip.expand_or_jumpable() then
-        return "<plug>luasnip-expand-or-jump"
+    if require("html-tags").line_has_trigger() then
+        return "<cmd>lua require('html-tags').compile_line()<cr>"
+    elseif luasnip.expand_or_jumpable() then
+        return "<cmd>lua require('luasnip').expand_or_jump()<cr>"
     end
     return "<tab>"
 end, {remap = true, expr = true})
