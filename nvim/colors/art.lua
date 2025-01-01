@@ -5,9 +5,6 @@ if vim.fn.exists("syntax_on") then
 end
 
 vim.g.colors_name = "art"
-vim.g.loaded_matchparen = 1
-
-vim.opt.background = "dark"
 
 local black   = "#333333"  -- 0
 local red     = "#9f6060"  -- 1

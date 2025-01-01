@@ -1,5 +1,7 @@
-vim.env.BASH_ENV = "~/.bash_aliases"
+vim.g.editorconfig = false
+vim.g.loaded_matchparen = 1
 
+vim.env.BASH_ENV = "~/.bash_aliases"
 vim.g.mapleader = " "
 
 vim.opt.tabstop = 4
@@ -15,6 +17,7 @@ vim.opt.list = true
 vim.opt.listchars = {trail = "·", tab = "  "}
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.background = "dark"
 
 vim.cmd.filetype("indent off")
 vim.cmd.colorscheme("art")
@@ -64,6 +67,7 @@ luasnip.config.set_config({
 vim.keymap.set("n", "<leader>ss", luasnip.unlink_current)
 
 vim.keymap.set("i", "<tab>", function()
+-- HTML Tags
     if require("html-tags").line_has_trigger() then
         return "<cmd>lua require('html-tags').compile_line()<cr>"
     end
@@ -107,8 +111,8 @@ luasnip.add_snippets("php", {
     })
 })
 
-for _, lang in pairs({"html", "vue", "php"}) do
-    luasnip.add_snippets(lang, {
+for _, ft in pairs({"html", "vue", "php"}) do
+    luasnip.add_snippets(ft, {
         luasnip.snippet("tag", {
             luasnip.text_node("<"), luasnip.insert_node(1), luasnip.text_node(">"),
             luasnip.insert_node(0),
