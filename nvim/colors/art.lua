@@ -1,7 +1,7 @@
-vim.cmd("hi clear")
+vim.cmd.hi("clear")
 
-if vim.fn.exists("syntax_on") then
-    vim.cmd("syntax reset")
+if vim.g.syntax_on ~= nil then
+    vim.cmd.syn("reset")
 end
 
 vim.g.colors_name = "art"
@@ -44,11 +44,11 @@ local hi = function(group, gui)
         table.insert(args, "guibg="..gui_bg)
     end
 
-    vim.cmd.highlight(args)
+    vim.cmd.hi(args)
 end
 
 local link = function(from, to)
-    vim.cmd.highlight({bang = true, "link", from, to})
+    vim.cmd.hi({bang = true, "link", from, to})
 end
 
 -- UI
