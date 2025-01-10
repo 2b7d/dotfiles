@@ -1,7 +1,12 @@
-vim.g.editorconfig = false
+vim.g.loaded_editorconfig = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_matchparen = 1
 vim.g.loaded_2html_plugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
+vim.g.loaded_shada_plugin = 1
 
 vim.env.BASH_ENV = "~/.bash_aliases"
 vim.g.mapleader = " "
@@ -26,7 +31,7 @@ vim.cmd.filetype("indent off")
 vim.cmd.colorscheme("art")
 
 -- Highlighter
-vim.keymap.set("n", "<leader>hs", require("highlighter").strings)
+vim.keymap.set("n", "<leader>hs", require("highlighter.strings").highlight)
 
 -- Comment Toggler
 vim.keymap.set({"n", "v"}, "<leader>/", require("comment-toggler").toggle, {expr = true})
