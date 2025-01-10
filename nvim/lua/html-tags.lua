@@ -163,6 +163,7 @@ local function compile_tag(state)
     insert_output(state, output)
 end
 
+-- this function is forward declared as local above
 function compile_primary(state)
     if state.has_error then
         return
@@ -184,12 +185,12 @@ function compile_primary(state)
     end
 end
 
-function compile(state)
+local function compile(state)
     parse_indent(state)
     compile_primary(state)
 end
 
-function State(input)
+local function State(input)
     -- NOTE(art), 25.12.24: we are assuming that indentation is not a mix of tabs and spaces
     local indent_symbol, indent_multiplier = "\t", 1
     if vim.bo.expandtab then
