@@ -1,6 +1,6 @@
 [colors]
-cursor  = {cursor     = "#cccccc", text       = "#1a1a1a"}
 primary = {background = "#1a1a1a", foreground = "#cccccc"}
+cursor  = {cursor     = "#9f6060", text       = "#1a1a1a"}
 
 [colors.normal]
 black   = "#333333"
