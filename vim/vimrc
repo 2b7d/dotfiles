@@ -1,0 +1,90 @@
+vim9script
+
+g:loaded_getscriptPlugin = 1
+g:loaded_gzip = 1
+g:loaded_logiPat = 1
+g:loaded_manpager_plugin = 1
+g:loaded_matchparen = 1
+g:loaded_netrw = 1
+g:loaded_rrhelper = 1
+g:loaded_spellfile_plugin = 1
+g:loaded_tarPlugin = 1
+g:loaded_2html_plugin = 1
+g:loaded_tutor_mode_plugin = 1
+g:loaded_vimballPlugin = 1
+g:loaded_zipPlugin = 1
+
+$BASH_ENV = "~/.bash_aliases"
+g:mapleader = " "
+
+set nocompatible
+
+set ruler
+set showcmd
+set ttimeout
+set ttimeoutlen=50
+set display=lastline
+set incsearch
+set hlsearch
+set nrformats=bin,hex
+set mouse=a
+set nolangremap
+set scrolloff=20
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set autoindent
+set smartindent
+set nowrap
+set signcolumn=yes
+set colorcolumn=80
+set list
+set listchars=tab:\ \ ,trail:·
+set splitbelow
+set splitright
+set viminfo=
+set hidden
+set laststatus=2
+set wildoptions=pum,tagfile
+set shortmess=ltToOCF
+set clipboard=autoselectplus,exclude:cons\|linux
+set belloff=all
+set complete=.,w,b,t
+set fillchars=vert:│
+set formatoptions=tcqj
+set nojoinspaces
+set sidescroll=1
+set nostartofline
+set switchbuf=useopen
+set background=dark
+
+if has("gui_running")
+    set guioptions=!PMc
+    set guifont=CodeNewRoman\ 12
+    set guicursor=a:block-Cursor
+endif
+
+augroup show_listchars
+    au!
+    au InsertEnter * set nolist
+    au InsertLeave * set list
+augroup END
+
+augroup highlight_shebang
+    au!
+    au FileType * {
+        syn match global_shebang "\%^#!.*"
+        hi default link global_shebang Comment
+    }
+augroup END
+
+colorscheme art
+filetype plugin on
+syntax on
+
+command -nargs=* -complete=shellcmdline Term term ++shell <args>
+command Todo sp $HOME/.local/share/todo/list
+
+nmap <C-L> <cmd>nohlsearch<cr>
+nmap dl 0D
