@@ -43,7 +43,6 @@ hi PmenuThumb    cterm=NONE      ctermfg=NONE ctermbg=5
 hi TabLine       cterm=NONE      ctermfg=9    ctermbg=8
 hi TabLineSel    cterm=NONE      ctermfg=NONE ctermbg=8
 hi ColorColumn   cterm=NONE      ctermfg=NONE ctermbg=8
-hi Cursor        cterm=NONE      ctermfg=bg   ctermbg=1
 hi MessageWindow cterm=NONE      ctermfg=3    ctermbg=9
 hi Comment       cterm=NONE      ctermfg=2    ctermbg=NONE
 hi Underlined    cterm=underline ctermfg=NONE ctermbg=NONE
@@ -102,10 +101,7 @@ hi! link SpellRare     HiDebug
 hi! link SpellLocal    HiDebug
 hi! link CursorColumn  HiDebug
 hi! link CursorLine    HiDebug
-hi! link lCursor       HiDebug
 hi! link MatchParen    HiDebug
-hi! link ToolbarLine   HiDebug
-hi! link ToolbarButton HiDebug
 hi! link Added         HiDebug
 hi! link Changed       HiDebug
 hi! link Removed       HiDebug

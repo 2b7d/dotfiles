@@ -1,6 +1,7 @@
 vim9script
 
 import autoload "highlighter.vim"
+import autoload "comment.vim"
 
 g:loaded_getscriptPlugin = 1
 g:loaded_gzip = 1
@@ -42,7 +43,7 @@ set nowrap
 set signcolumn=yes
 set colorcolumn=80
 set list
-set listchars=tab:\ \ ,trail:·
+set listchars=tab:»\ ,trail:·
 set splitbelow
 set splitright
 set viminfo=
@@ -60,12 +61,6 @@ set sidescroll=1
 set nostartofline
 set switchbuf=useopen
 set background=dark
-
-if has("gui_running")
-    set guioptions=!PMc
-    set guifont=CodeNewRoman\ 12
-    set guicursor=a:block-Cursor
-endif
 
 augroup show_listchars
     au!
@@ -92,3 +87,5 @@ nmap <C-L> <cmd>nohlsearch<cr>
 nmap dl 0D
 
 nmap <leader>hs <ScriptCmd>highlighter.Strings()<cr>
+nmap <leader>/ <ScriptCmd>comment.Toggle()<cr>
+vmap <leader>/ <ScriptCmd>comment.Toggle()<cr><esc>
