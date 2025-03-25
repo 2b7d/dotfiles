@@ -1,5 +1,7 @@
 vim9script
 
+import autoload "highlighter.vim"
+
 g:loaded_getscriptPlugin = 1
 g:loaded_gzip = 1
 g:loaded_logiPat = 1
@@ -88,3 +90,5 @@ command Todo sp $HOME/.local/share/todo/list
 
 nmap <C-L> <cmd>nohlsearch<cr>
 nmap dl 0D
+
+nmap <leader>hs <ScriptCmd>highlighter.Strings()<cr>
