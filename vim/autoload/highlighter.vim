@@ -1,12 +1,12 @@
 vim9script
 
-var hi_state = false
+var hi_strings = false
 
 export def Strings(): void
-    hi_state = !hi_state
-    if hi_state
-        hi String guifg=art_red ctermfg=1
+    hi_strings = !hi_strings
+    if hi_strings
+        hi String ctermfg=1
     else
-        hi String guifg=fg ctermfg=fg
+        hi String ctermfg=fg
     endif
 enddef

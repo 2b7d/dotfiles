@@ -8,107 +8,45 @@ endif
 
 g:colors_name = "art"
 
-const black   = "#1a1a1a"
-const red     = "#9f6060"
-const green   = "#8ba375"
-const orange  = "#d9b38c"
-const blue    = "#7a9eb8"
-const magenta = "#c69fc3"
-const cyan    = "#88ddb3"
-const white   = "#cccccc"
+#   black 0      lblack 8
+#     red 1     llblack 9
+#   green 2      lgreen 10
+#  orange 3      yellow 11
+#    blue 4       lblue 12
+# magenta 5    lmagenta 13
+#    cyan 6       lcyan 14
+#   white 7      lwhite 15
 
-const lblack   = "#333333"
-const llblack  = "#504e49"
-const lgreen   = "#b3c2a3"
-const yellow   = "#d9d98c"
-const lblue    = "#9cbac9"
-const lmagenta = "#d7bfd9"
-const lcyan    = "#b0e8df"
-const lwhite   = "#f2f2f2"
-
-g:terminal_ansi_colors = [
-    black, red, green, orange, blue, magenta, cyan, white,
-    lblack, llblack, lgreen, yellow, lblue, lmagenta, lcyan, lwhite
-]
-
-v:colornames.art_black   = black
-v:colornames.art_red     = red
-v:colornames.art_green   = green
-v:colornames.art_orange  = orange
-v:colornames.art_blue    = blue
-v:colornames.art_magenta = magenta
-v:colornames.art_cyan    = cyan
-v:colornames.art_white   = white
-
-v:colornames.art_lblack   = lblack
-v:colornames.art_llblack  = llblack
-v:colornames.art_lgreen   = lgreen
-v:colornames.art_yellow   = yellow
-v:colornames.art_lblue    = lblue
-v:colornames.art_lmagenta = lmagenta
-v:colornames.art_lcyan    = lcyan
-v:colornames.art_lwhite   = lwhite
-
-const gui2term = {
-    NONE: "NONE",
-    fg:   "fg",
-    bg:   "bg",
-
-    art_black:   "0",
-    art_red:     "1",
-    art_green:   "2",
-    art_orange:  "3",
-    art_blue:    "4",
-    art_magenta: "5",
-    art_cyan:    "6",
-    art_white:   "7",
-
-    art_lblack:   "8",
-    art_llblack:  "9",
-    art_lgreen:   "10",
-    art_yellow:   "11",
-    art_lblue:    "12",
-    art_lmagenta: "13",
-    art_lcyan:    "14",
-    art_lwhite:   "15"
-}
-
-def Hi(group: string, mode: string, guifg: string, guibg: string): void
-    var termfg = gui2term[guifg]
-    var termbg = gui2term[guibg]
-    execute printf("hi %s gui=%s guifg=%s guibg=%s cterm=%s ctermfg=%s ctermbg=%s", group, mode, guifg, guibg, mode, termfg, termbg)
-enddef
-
-Hi("HiDebug",       "NONE",      "art_red",     "art_cyan")
-Hi("Normal",        "NONE",      "art_white",   "art_black")
-Hi("SpecialKey",    "NONE",      "art_cyan",    "NONE")
-Hi("NonText",       "NONE",      "art_llblack", "NONE")
-Hi("Directory",     "NONE",      "art_blue",    "NONE")
-Hi("ErrorMsg",      "NONE",      "NONE",        "art_red")
-Hi("IncSearch",     "NONE",      "bg",          "art_orange")
-Hi("Search",        "NONE",      "bg",          "art_blue")
-Hi("MoreMsg",       "NONE",      "art_green",   "NONE")
-Hi("LineNr",        "NONE",      "art_llblack", "NONE")
-Hi("Question",      "NONE",      "art_green",   "NONE")
-Hi("StatusLine",    "NONE",      "NONE",        "art_lblack")
-Hi("StatusLineNC",  "NONE",      "art_llblack", "art_lblack")
-Hi("VertSplit",     "NONE",      "bg",          "art_lblack")
-Hi("Title",         "NONE",      "art_magenta", "NONE")
-Hi("Visual",        "NONE",      "bg",          "fg")
-Hi("WarningMsg",    "NONE",      "art_orange",  "NONE")
-Hi("Folded",        "NONE",      "art_cyan",    "NONE")
-Hi("SignColumn",    "NONE",      "art_lblack",  "NONE")
-Hi("Pmenu",         "NONE",      "NONE",        "art_llblack")
-Hi("PmenuSel",      "NONE",      "bg",          "art_orange")
-Hi("PmenuSbar",     "NONE",      "NONE",        "art_lblack")
-Hi("PmenuThumb",    "NONE",      "NONE",        "art_orange")
-Hi("TabLine",       "NONE",      "art_llblack", "art_lblack")
-Hi("TabLineSel",    "NONE",      "NONE",        "art_lblack")
-Hi("ColorColumn",   "NONE",      "NONE",        "art_lblack")
-Hi("Cursor",        "NONE",      "bg",          "art_red")
-Hi("MessageWindow", "NONE",      "art_orange",  "art_llblack")
-Hi("Comment",       "NONE",      "art_green",   "NONE")
-Hi("Underlined",    "underline", "NONE",        "NONE")
+hi HiDebug       cterm=NONE      ctermfg=1    ctermbg=6
+hi Normal        cterm=NONE      ctermfg=7    ctermbg=0
+hi SpecialKey    cterm=NONE      ctermfg=6    ctermbg=NONE
+hi NonText       cterm=NONE      ctermfg=9    ctermbg=NONE
+hi Directory     cterm=NONE      ctermfg=4    ctermbg=NONE
+hi ErrorMsg      cterm=NONE      ctermfg=NONE ctermbg=1
+hi IncSearch     cterm=NONE      ctermfg=bg   ctermbg=3
+hi Search        cterm=NONE      ctermfg=bg   ctermbg=4
+hi MoreMsg       cterm=NONE      ctermfg=2    ctermbg=NONE
+hi LineNr        cterm=NONE      ctermfg=9    ctermbg=NONE
+hi Question      cterm=NONE      ctermfg=2    ctermbg=NONE
+hi StatusLine    cterm=NONE      ctermfg=NONE ctermbg=8
+hi StatusLineNC  cterm=NONE      ctermfg=9    ctermbg=8
+hi VertSplit     cterm=NONE      ctermfg=bg   ctermbg=8
+hi Title         cterm=NONE      ctermfg=5    ctermbg=NONE
+hi Visual        cterm=NONE      ctermfg=bg   ctermbg=fg
+hi WarningMsg    cterm=NONE      ctermfg=3    ctermbg=NONE
+hi Folded        cterm=NONE      ctermfg=6    ctermbg=NONE
+hi SignColumn    cterm=NONE      ctermfg=8    ctermbg=NONE
+hi Pmenu         cterm=NONE      ctermfg=NONE ctermbg=9
+hi PmenuSel      cterm=NONE      ctermfg=bg   ctermbg=5
+hi PmenuSbar     cterm=NONE      ctermfg=NONE ctermbg=8
+hi PmenuThumb    cterm=NONE      ctermfg=NONE ctermbg=5
+hi TabLine       cterm=NONE      ctermfg=9    ctermbg=8
+hi TabLineSel    cterm=NONE      ctermfg=NONE ctermbg=8
+hi ColorColumn   cterm=NONE      ctermfg=NONE ctermbg=8
+hi Cursor        cterm=NONE      ctermfg=bg   ctermbg=1
+hi MessageWindow cterm=NONE      ctermfg=3    ctermbg=9
+hi Comment       cterm=NONE      ctermfg=2    ctermbg=NONE
+hi Underlined    cterm=underline ctermfg=NONE ctermbg=NONE
 
 hi! link Terminal          Normal
 hi! link CurSearch         IncSearch
@@ -130,7 +68,7 @@ hi clear Type
 hi clear Special
 hi clear Ignore
 
-if !has("gui_running") && str2nr(&t_Co) == 8
+if str2nr(&t_Co) == 8
     hi IncSearch     ctermfg=bg ctermbg=5
     hi Search                   ctermbg=3
     hi StatusLine               ctermbg=4
