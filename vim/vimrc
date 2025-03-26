@@ -88,8 +88,30 @@ nnoremap <C-L> <cmd>nohlsearch<cr>
 nnoremap dl 0D
 
 nnoremap <leader>hs <scriptcmd>highlighter.Strings()<cr>
+
 nnoremap <leader>/ <scriptcmd>comment.Toggle()<cr>
 vnoremap <leader>/ <scriptcmd>comment.Toggle()<cr><esc>
+
+nnoremap <leader>ff <cmd>Term fd -E .git -E node_modules .<cr>
+nnoremap <expr> <leader>fc MapFindCurrent()
+nnoremap <expr> <leader>fg MapFindGlobal()
+
+def MapFindCurrent(): string
+    var val = input("Buffer Grep> ")
+    if trim(val) == ""
+        return "\<esc>"
+    endif
+    return $"\<cmd>Term rg -i '{val}' %\<cr>"
+enddef
+
+def MapFindGlobal(): string
+    var val = input("PWD Grep> ")
+    if trim(val) == ""
+        return "\<esc>"
+    endif
+    return $"\<cmd>Term rg -i -g=!.git -g=!node_modules '{val}' .\<cr>"
+enddef
+
 inoremap <expr> <tab> HandleTabInsertMode()
 
 def HandleTabInsertMode(): string

@@ -51,11 +51,11 @@ require("telescope").setup({
 
 local telescope_builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files)
-vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers)
-vim.keymap.set("n", "<leader>fc", telescope_builtin.current_buffer_fuzzy_find)
-vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
-vim.keymap.set("n", "<leader>fs", telescope_builtin.grep_string)
+vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files) -- x
+vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers) -- ?
+vim.keymap.set("n", "<leader>fc", telescope_builtin.current_buffer_fuzzy_find) -- x
+vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep) -- x
+vim.keymap.set("n", "<leader>fs", telescope_builtin.grep_string) -- ?
 
 -- LuaSnip
 local luasnip = require("luasnip")
