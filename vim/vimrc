@@ -2,6 +2,7 @@ vim9script
 
 import autoload "highlighter.vim"
 import autoload "comment.vim"
+import autoload "html_tags.vim"
 
 g:loaded_getscriptPlugin = 1
 g:loaded_gzip = 1
@@ -83,9 +84,17 @@ syntax on
 command -nargs=* -complete=shellcmdline Term term ++shell <args>
 command Todo sp $HOME/.local/share/todo/list
 
-nmap <C-L> <cmd>nohlsearch<cr>
-nmap dl 0D
+nnoremap <C-L> <cmd>nohlsearch<cr>
+nnoremap dl 0D
 
-nmap <leader>hs <ScriptCmd>highlighter.Strings()<cr>
-nmap <leader>/ <ScriptCmd>comment.Toggle()<cr>
-vmap <leader>/ <ScriptCmd>comment.Toggle()<cr><esc>
+nnoremap <leader>hs <scriptcmd>highlighter.Strings()<cr>
+nnoremap <leader>/ <scriptcmd>comment.Toggle()<cr>
+vnoremap <leader>/ <scriptcmd>comment.Toggle()<cr><esc>
+inoremap <expr> <tab> HandleTabInsertMode()
+
+def HandleTabInsertMode(): string
+    if html_tags.LineHasTrigger()
+        return "\<scriptcmd>html_tags.CompileLine()\<cr>"
+    endif
+    return "\<tab>"
+enddef

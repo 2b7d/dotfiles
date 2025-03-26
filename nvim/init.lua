@@ -16,7 +16,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
-vim.opt.hlsearch = false
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 20
@@ -28,13 +27,7 @@ vim.opt.background = "dark"
 vim.opt.shada = ""
 
 vim.cmd.filetype("indent off")
-vim.cmd.colorscheme("art")
-
--- Highlighter
-vim.keymap.set("n", "<leader>hs", require("highlighter.strings").highlight)
-
--- Comment Toggler
-vim.keymap.set({"n", "v"}, "<leader>/", require("comment-toggler").toggle, {expr = true})
+vim.cmd.colorscheme("default")
 
 -- Telescope
 require("telescope").setup({
@@ -75,10 +68,6 @@ luasnip.config.set_config({
 vim.keymap.set("n", "<leader>ss", luasnip.unlink_current)
 
 vim.keymap.set("i", "<tab>", function()
--- HTML Tags
-    if require("html-tags").line_has_trigger() then
-        return "<cmd>lua require('html-tags').compile_line()<cr>"
-    end
     if luasnip.expand_or_jumpable() then
         return "<cmd>lua require('luasnip').expand_or_jump()<cr>"
     end
@@ -86,8 +75,8 @@ vim.keymap.set("i", "<tab>", function()
 end, {remap = true, expr = true})
 
 luasnip.add_snippets("all", {
-	luasnip.snippet("note", {luasnip.text_node("NOTE(art), " .. os.date("!%d.%m.%y") .. ": ")}),
-	luasnip.snippet("todo", {luasnip.text_node("TODO(art), " .. os.date("!%d.%m.%y") .. ": ")}),
+    luasnip.snippet("note", {luasnip.text_node("NOTE(art), " .. os.date("!%d.%m.%y") .. ": ")}),
+    luasnip.snippet("todo", {luasnip.text_node("TODO(art), " .. os.date("!%d.%m.%y") .. ": ")}),
 })
 
 luasnip.add_snippets("vue", {
