@@ -5,4 +5,5 @@ if exists("b:did_ftplugin")
 endif
 b:did_ftplugin = 1
 
-setl commentstring=;%s
+setlocal comments=:;
+setlocal commentstring=;%s
