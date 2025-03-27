@@ -3,6 +3,7 @@ vim9script
 import autoload "highlighter.vim"
 import autoload "comment.vim"
 import autoload "html_tags.vim"
+import autoload "snippet.vim"
 
 g:loaded_getscriptPlugin = 1
 g:loaded_gzip = 1
@@ -54,9 +55,10 @@ set wildoptions=pum,tagfile
 set shortmess=ltToOCF
 set clipboard=autoselectplus,exclude:cons\|linux
 set belloff=all
+set autoread
 set complete=.,w,b,t
 set fillchars=vert:│
-set formatoptions=tcqj
+set formatoptions=croqj
 set nojoinspaces
 set sidescroll=1
 set nostartofline
@@ -92,7 +94,8 @@ nnoremap <leader>hs <scriptcmd>highlighter.Strings()<cr>
 nnoremap <leader>/ <scriptcmd>comment.Toggle()<cr>
 vnoremap <leader>/ <scriptcmd>comment.Toggle()<cr><esc>
 
-nnoremap <leader>ff <cmd>Term fd -E .git -E node_modules .<cr>
+## TODO(art), 27.03.25: write a proper plugin
+nnoremap <leader>ff <cmd>Term fd -t f -E .git -E node_modules .<cr>
 nnoremap <expr> <leader>fc MapFindCurrent()
 nnoremap <expr> <leader>fg MapFindGlobal()
 
@@ -111,12 +114,16 @@ def MapFindGlobal(): string
     endif
     return $"\<cmd>Term rg -i -g=!.git -g=!node_modules '{val}' .\<cr>"
 enddef
+##
 
 inoremap <expr> <tab> HandleTabInsertMode()
 
 def HandleTabInsertMode(): string
     if html_tags.LineHasTrigger()
         return "\<scriptcmd>html_tags.CompileLine()\<cr>"
+    endif
+    if snippet.LineHasTrigger()
+        return "\<scriptcmd>snippet.Expand()\<cr>"
     endif
     return "\<tab>"
 enddef
