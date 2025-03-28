@@ -1,4 +1,4 @@
-vim9script
+vim9script noclear
 
 if exists("g:did_load_filetypes")
     finish
