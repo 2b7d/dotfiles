@@ -1,0 +1,9 @@
+<script setup>
+import * as Vue from "vue";
+</script>
+
+<template>
+</template>
+
+<style scoped>
+</style>

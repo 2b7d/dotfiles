@@ -4,22 +4,30 @@ export def LineHasTrigger(): bool
     var line = getline(".")
     var col = charcol(".")
     var input = slice(line, 0, col - 1)
-    var parts = split(input, '\s', 1) # TODO(art): try to use index
-    var word = remove(parts, -1) # NOTE(art): 'parts' was mutated
+    var [trigger, trigger_start, _] = matchstrpos(input, '\S\+$') # one or more non-whitespace from the end
+    var before_trigger = slice(input, 0, trigger_start)
+    var after_trigger = slice(line, col - 1)
 
-    if word == ""
+    if trigger == ""
         return false
     endif
 
-    var snippath = glob($"./snippets/{&filetype}/{word}")
+    var snippath = glob($"$MYVIMDIR/snippets/{&filetype}/{trigger}")
 
     if snippath == ""
+        snippath = glob($"$MYVIMDIR/snippets/{trigger}")
+        if snippath == ""
+            return false
+        endif
+    endif
+
+    if getftype(snippath) != "file"
         return false
     endif
 
     snippet.path = snippath
-    snippet.content_before_trigger = join(parts)
-    snippet.content_after_trigger = slice(line, col - 1)
+    snippet.content_before_trigger = before_trigger
+    snippet.content_after_trigger = after_trigger
 
     return true
 enddef
@@ -27,9 +35,7 @@ enddef
 export def Expand(): void
     var content = readfile(snippet.path)
 
-    if snippet.content_before_trigger != ""
-        content[0] = $"{snippet.content_before_trigger} {content[0]}"
-    endif
+    content[0] = snippet.content_before_trigger .. content[0]
 
     var row = line(".")
     var col = len(content[-1]) + 1
@@ -48,4 +54,3 @@ var snippet = {
     content_before_trigger: "",
     content_after_trigger: "",
 }
-
