@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -12,4 +14,4 @@ syn region css_string start=+\z(['"]\)+ end=+\z1+ skip=+\\\\\|\\\z1+
 hi def link css_comment Comment
 hi def link css_string String
 
-let b:current_syntax = "css"
+b:current_syntax = "css"

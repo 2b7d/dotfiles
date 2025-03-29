@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -39,4 +41,4 @@ syn region sh_special start="\${\$\$" end="}"
 hi def link sh_comment Comment
 hi def link sh_string String
 
-let b:current_syntax = "sh"
+b:current_syntax = "sh"

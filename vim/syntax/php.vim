@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -19,4 +21,4 @@ syn region php_string start="\(<<<\)\@<='\z(\I\i*\)'$" end="^\s*\z1\>" contained
 hi def link php_comment Comment
 hi def link php_string String
 
-let b:current_syntax = "php"
+b:current_syntax = "php"

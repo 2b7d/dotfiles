@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -23,4 +25,4 @@ syn region html_tag_script start="<script\>\_[^>]*>" end="</script\_[^>]*>" cont
 hi def link html_comment Comment
 hi def link html_string String
 
-let b:current_syntax = "html"
+b:current_syntax = "html"

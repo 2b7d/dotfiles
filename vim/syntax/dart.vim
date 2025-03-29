@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -13,4 +15,4 @@ syn region dart_string start=+\z(['"]\)+ end=+\z1+ skip=+\\\\\|\\\z1+
 hi def link dart_comment Comment
 hi def link dart_string String
 
-let b:current_syntax = "dart"
+b:current_syntax = "dart"

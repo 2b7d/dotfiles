@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -15,4 +17,4 @@ syn match c_include display "^\s*\zs\%(%:\|#\)\s*include\>\s*<" contains=c_strin
 hi def link c_comment Comment
 hi def link c_string String
 
-let b:current_syntax = "c"
+b:current_syntax = "c"

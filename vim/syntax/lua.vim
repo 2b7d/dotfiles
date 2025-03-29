@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -13,4 +15,4 @@ syn region lua_string start="\[\z(=*\)\[" end="\]\z1\]"
 hi def link lua_comment Comment
 hi def link lua_string String
 
-let b:current_syntax = "lua"
+b:current_syntax = "lua"

@@ -1,3 +1,5 @@
+vim9script noclear
+
 if exists("b:current_syntax")
     finish
 endif
@@ -9,4 +11,4 @@ syn region json_comment start="/\*" end="\*/"
 
 hi def link json_comment Comment
 
-let b:current_syntax = "jsonc"
+b:current_syntax = "jsonc"
