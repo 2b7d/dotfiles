@@ -2,8 +2,9 @@ vim9script
 
 import autoload "highlighter.vim"
 import autoload "comment.vim"
-import autoload "html_tags.vim"
+import autoload "httags.vim"
 import autoload "snippet.vim"
+import autoload "finder.vim"
 
 g:loaded_getscriptPlugin = 1
 g:loaded_gzip = 1
@@ -95,58 +96,18 @@ nnoremap <leader>hs <scriptcmd>highlighter.Strings()<cr>
 nnoremap <leader>/ <scriptcmd>comment.Toggle()<cr>
 vnoremap <leader>/ <scriptcmd>comment.Toggle()<cr><esc>
 
-############### art, 27.03.25: write a proper plugin
-nnoremap <leader>ff <cmd>Term fd -t f -E .git -E node_modules<cr>
-nnoremap <expr> <leader>fc MapFindCurrent()
-nnoremap <expr> <leader>fs MapFindString()
-nnoremap <expr> <leader>fg MapFindGlobal()
-
-vnoremap <expr> <leader>fs MapFindString('v')
-
-def MapFindCurrent(): string
-    var val = input("Buffer Grep> ")
-    if trim(val) == ""
-        return "\<esc>"
-    endif
-    return $"\<cmd>Term rg -i -- \"{val}\" %\<cr>"
-enddef
-
-def MapFindString(mode = "n"): string
-    var word = expand("<cword>")
-
-    if mode == "v"
-        var s = charcol("v")
-        var e = charcol(".")
-
-        if e < s
-            var tmp = s
-
-            s = e
-            e = tmp
-        endif
-        word = slice(getline("."), s - 1, e)
-    endif
-
-    # " ' < > \t \n < > ( ) [ ] { } ? * + | $ . ^ ` \
-    word = escape(word, '\$#')
-    word = escape(word, '()[]{}?*+|$^.#`\"')
-    return $"\<cmd>Term rg -i -w -g=!.git -g=!node_modules -- \"{word}\"\<cr>"
-enddef
-
-def MapFindGlobal(): string
-    var val = input("PWD Grep> ")
-    if trim(val) == ""
-        return "\<esc>"
-    endif
-    return $"\<cmd>Term rg -i -g=!.git -g=!node_modules -- \"{val}\"\<cr>"
-enddef
-###############
+nmap <leader>ff <scriptcmd>finder.CWDFiles()<cr>
+for m in ["n", "v"]
+    execute $"{m}map \<leader>fs <scriptcmd>finder.WordGrep()\<cr>"
+endfor
+nmap <leader>fc <scriptcmd>finder.BufferGrep()<cr>
+nmap <leader>fg <scriptcmd>finder.CWDGrep()<cr>
 
 inoremap <expr> <tab> HandleTabInsertMode()
 
 def HandleTabInsertMode(): string
-    if html_tags.LineHasTrigger()
-        return "\<scriptcmd>html_tags.CompileLine()\<cr>"
+    if httags.LineHasTrigger()
+        return "\<scriptcmd>httags.CompileLine()\<cr>"
     endif
     if snippet.LineHasTrigger()
         return "\<scriptcmd>snippet.Expand()\<cr>"
