@@ -1,1 +1,1 @@
-TODO(art), ${echo system("date +%d.%m.%y")}: 
+TODO(art), ${strftime("%d.%m.%y")}: 

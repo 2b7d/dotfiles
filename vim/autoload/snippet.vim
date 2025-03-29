@@ -1,6 +1,10 @@
 vim9script
 
 export def LineHasTrigger(): bool
+    if &buftype != ""
+        return false
+    endif
+
     var line = getline(".")
     var col = charcol(".")
     var input = slice(line, 0, col - 1)
@@ -12,27 +16,10 @@ export def LineHasTrigger(): bool
         return false
     endif
 
-    var snippath = $"{SNIPPETS_DIR}/{&filetype}/{trigger}"
+    var snippath = FindSnippetPath(trigger)
 
-    if !filereadable(snippath)
-        snippath = ""
-        if has_key(shared_filetypes, &filetype)
-            for ft in shared_filetypes[&filetype]
-                var path = $"{SNIPPETS_DIR}/{ft}/{trigger}"
-
-                if filereadable(path)
-                    snippath = path
-                    break
-                endif
-            endfor
-        endif
-
-        if snippath == ""
-            snippath = $"{SNIPPETS_DIR}/{trigger}"
-            if !filereadable(snippath)
-                return false
-            endif
-        endif
+    if snippath == ""
+        return false
     endif
 
     snippet.filepath = snippath
@@ -57,22 +44,30 @@ export def Expand(): void
 
     for [i, line] in items(content)
         var [cmd, cmd_start, cmd_end] = matchstrpos(line, '${.*}') # anything between ${}
+
         if cmd_start < 0
             continue
         endif
+
         cmd = slice(cmd, 2, -1) # trim ${}
-        var result = trim(execute(cmd))
+
+        var result = trim(execute("echo " .. cmd))
+
         content[i] = slice(line, 0, cmd_start) .. result .. slice(line, cmd_end)
     endfor
 
     if &expandtab
         var indent_multiplier = shiftwidth()
+
         for [i, line] in items(content)
             var [_, _, indent_len] = matchstrpos(line, '^\t\+') # one or more \t from the start
+
             if indent_len < 0
                 continue
             endif
+
             var space_indent = repeat(" ", indent_multiplier * indent_len)
+
             content[i] = space_indent .. slice(line, indent_len)
         endfor
     endif
@@ -92,8 +87,7 @@ export def Expand(): void
 enddef
 
 export def ListAvailable(): void
-    var dirents = readdirex(SNIPPETS_DIR)
-    var snip_global: list<string> = []
+    var snip_global = readdir(SNIPPETS_DIR, (ent) => !isdirectory($"{SNIPPETS_DIR}/{ent}"))
     var snip_local: list<string> = []
     var filetypes = [&filetype]
 
@@ -101,15 +95,11 @@ export def ListAvailable(): void
         filetypes += shared_filetypes[&filetype]
     endif
 
-    for dirent in dirents
-        if dirent.type == "file"
-            add(snip_global, dirent.name)
-        elseif dirent.type == "dir"
-            for ft in filetypes
-                if dirent.name == ft
-                    snip_local += readdir($"{SNIPPETS_DIR}/{dirent.name}")
-                endif
-            endfor
+    for ft in filetypes
+        var path = $"{SNIPPETS_DIR}/{ft}"
+
+        if isdirectory(path)
+            snip_local += readdir(path)
         endif
     endfor
 
@@ -131,13 +121,13 @@ export def ListAvailable(): void
     endif
 enddef
 
+const SNIPPETS_DIR = expand("$MYVIMDIR/snippets")
+
 class SnippetState
     public var filepath = ""
     public var content_before_trigger = ""
     public var content_after_trigger = ""
 endclass
-
-const SNIPPETS_DIR = expand("$MYVIMDIR/snippets")
 
 var snippet = SnippetState.new()
 
@@ -146,3 +136,28 @@ var shared_filetypes = {
     vue: ["html"],
     php: ["html"]
 }
+
+def FindSnippetPath(trigger: string): string
+    var path = $"{SNIPPETS_DIR}/{&filetype}/{trigger}"
+
+    if filereadable(path)
+        return path
+    endif
+
+    if has_key(shared_filetypes, &filetype)
+        for ft in shared_filetypes[&filetype]
+            path = $"{SNIPPETS_DIR}/{ft}/{trigger}"
+
+            if filereadable(path)
+                return path
+            endif
+        endfor
+    endif
+
+    path = $"{SNIPPETS_DIR}/{trigger}"
+    if filereadable(path)
+        return path
+    endif
+
+    return ""
+enddef

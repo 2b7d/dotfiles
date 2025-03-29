@@ -1,1 +1,1 @@
-NOTE(art), ${echo system("date +%d.%m.%y")}: 
+NOTE(art), ${strftime("%d.%m.%y")}: 
