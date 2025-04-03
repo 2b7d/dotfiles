@@ -1,5 +1,5 @@
 [core]
-    editor = nvim
+    editor = /bin/vim
 [user]
     name = 2b7d
     email = markfosseddy@gmail.com

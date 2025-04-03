@@ -3,21 +3,22 @@ primary = {background = "#1a1a1a", foreground = "#cccccc"}
 cursor  = {cursor     = "#9f6060", text       = "#1a1a1a"}
 
 [colors.normal]
-black   = "#333333"
+black   = "#1a1a1a"
 red     = "#9f6060"
 green   = "#8ba375"
-yellow  = "#d9b38c"
+yellow  = "#d9b38c" # orange
 blue    = "#7a9eb8"
 magenta = "#c69fc3"
 cyan    = "#88ddb3"
 white   = "#cccccc"
 
 [colors.bright]
-black   = "#504e49"
-red     = "#d98c8c"
-green   = "#b3c2a3"
+black   = "#333333" # light black
+red     = "#504e49" # light light black
+green   = "#b3c2a3" # placeholder
 yellow  = "#d9d98c"
-blue    = "#9cbac9"
-magenta = "#d7bfd9"
-cyan    = "#b0e8df"
-white   = "#f2f2f2"
+blue    = "#9cbac9" # placeholder
+magenta = "#d7bfd9" # placeholder
+cyan    = "#b0e8df" # placeholder
+white   = "#f2f2f2" # placeholder
+
