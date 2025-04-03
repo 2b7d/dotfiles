@@ -114,3 +114,27 @@ def HandleTabInsertMode(): string
     endif
     return "\<tab>"
 enddef
+
+# -----------------------------------------
+
+var buffer_cwds: dict<string> = {}
+
+command BufcwdSave buffer_cwds[bufnr()] = getcwd()
+command BufcwdList echom buffer_cwds
+
+augroup bufcwd
+    au!
+    au BufWinEnter * {
+        var id = expand("<abuf>")
+        if has_key(buffer_cwds, id)
+            execute $"lcd {buffer_cwds[id]}"
+        endif
+    }
+    au BufDelete * {
+        var id = expand("<abuf>")
+        if has_key(buffer_cwds, id)
+            remove(buffer_cwds, id)
+        endif
+    }
+augroup END
+
